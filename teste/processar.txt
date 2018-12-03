@@ -1,0 +1,30 @@
+<?php 
+ 
+include_once 'conexao.php';
+
+	$nome 	= isset($_POST['nome']) == true ?$_POST['nome']:"";
+
+	//$nome 	  = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+
+ 	$num	= isset($_POST['num']) == true ?$_POST['num']:"";
+
+ 	//$num = filter_input(INPUT_POST, 'num', FILTER_SANITIZE_NUMBER_INT); 
+
+	$cargo = isset($_POST['cargo']) == true ?$_POST['cargo']:"";
+
+	//$cargo = filter_input(INPUT_POST, 'cargo', FILTER_SANITIZE_SPECIAL_CHARS);
+
+	$sql = "INSERT INTO tb_cadastrado (nome, num, cargo) VALUES ('$nome', '$num', '$cargo')";
+
+		if ($conn->query($sql) == TRUE) {
+
+			header('Location: form_cadastro.php');
+
+			//echo "Os dados foram gravados com sucessos";
+
+		} else {
+		echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+		$conn->close();
+
+?>
